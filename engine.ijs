@@ -16,8 +16,9 @@ NB. the same sequence of new numbers will result in each fresh J session.
 coclass 'g2048'
 
 new2048=: verb define
+  Gridsz=: 4 4
   Points=: Score=: 0
-  Grid=: newnum^:2 ] 4 4 $ 0
+  Grid=: newnum^:2 ] Gridsz $ 0
 )
 
 newnum=: verb define
