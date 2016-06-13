@@ -95,9 +95,9 @@ update=: 3 : 0
 )
 
 mswd_resize=: 3 : 0
-  isisz=. 400 400
+  tblsz=. 400 400
   wd 'psel ', MSWD_hwnd
-  wd 'set g minwh ',": isisz
+  wd 'set g minwh ',": tblsz
 )
 
 mswd_left_button=: 3 :'mergerow toLeft move (scorerow toLeft)'
@@ -105,17 +105,9 @@ mswd_right_button=: 3 :'mergerow toRight move (scorerow toRight)'
 mswd_up_button=: 3 :'mergerow toUp move (scorerow toUp)'
 mswd_down_button=: 3 :'mergerow toDown move (scorerow toDown)'
 
-mswd_new_button=: 3 :0
-  startnew ''
-)
-
-mswd_about_button=: 3 : 0
-    sminfo 'About 2048';About
-)
-
-mswd_help_button=: 3 : 0
-    sminfo 'Minesweeper Instructions';Instructions
-)
+mswd_new_button=: startnew
+mswd_about_button=: sminfo bind ('About 2048';About)
+mswd_help_button=: sminfo bind ('Minesweeper Instructions';Instructions)
 
 NB. Text Nouns
 NB. =========================================================
@@ -127,11 +119,11 @@ Object:
 
 How to play:
   When 2 numbers the same touch they merge.
-  Continue until you create the number 2048
-  or you cannot move any more.
+  Continue merginng until you create the number
+  2048, or you cannot move any more.
 )
 
-About=: 0 : 0
+About=: noun define
 2048 Game
 Author: Ric Sherlock
 
@@ -142,4 +134,3 @@ NB. Auto-run UI
 NB. =========================================================
 cocurrent 'base'
 g2048Wd ''
-  
