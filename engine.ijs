@@ -36,17 +36,17 @@ mergerow=: ((* >:) #~ _1 |. -.@]) mskmerge
 scorerow=: +/@(+: #~ mskmerge)
 
 compress=: -.&0
-mergeleft=: 4&{.@(mergerow@compress&.|.)"1
-mergeright=: _4&{.@(mergerow@compress)"1
-mergeup=: (4&{.@(mergerow@compress&.|.)"1)&.|:
-mergedown=: (_4&{.@(mergerow@compress)"1)&.|:
+toLeft=: 1 :'4&{.@(u@compress&.|.)"1'
+toRight=: 1 : '_4&{.@(u@compress)"1'
+toUp=: 1 : '(4&{.@(u@compress&.|.)"1)&.|:'
+toDown=: 1 : '(_4&{.@(u@compress)"1)&.|:'
 
-scoreleft=: [: +/ (scorerow@compress&.|.)"1
-scoreright=: [: +/ (scorerow@compress)"1
-scoreup=: [: +/ ((scorerow@compress&.|.)"1)&.|:
-scoredown=: [: +/ ((scorerow@compress)"1)&.|:
+move=: conjunction define
+  Points=: +/@, v Grid
+  update newnum^:(Grid -.@-: ]) u Grid
+)
 
-noMoves=: (0 -.@e. ,)@(mergeright , mergeleft , mergeup ,: mergedown)
+noMoves=: (0 -.@e. ,)@(mergerow toRight , mergerow toLeft , mergerow toUp ,: mergerow toDown)
 hasWon=: 2048 e. ,
 
 eval=: verb define

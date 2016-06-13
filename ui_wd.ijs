@@ -47,7 +47,7 @@ create=: 3 : 0
   wd MSWD
   NB. need unique handle for mswd window to handle multiple instances of class
   MSWD_hwnd=: wd 'qhwndp'  NB. assign hwnd this for mswd in instance locale
-  mswd_startnew y
+  startnew y
   wd 'pshow'
 )
 
@@ -60,7 +60,7 @@ mswd_exit_button=: destroy
 mswd_close=: destroy
 mswd_cancel=: destroy
 
-mswd_g_fmttable=: 3 :0
+fmt_table=: 3 :0
   wd 'set g shape ',": Gridsz
   wd 'set g type ',":, 0 $~ Gridsz
   wd 'set g align ', ": 1 $~ {: Gridsz
@@ -79,9 +79,9 @@ showGrid=: 3 :0
   wd 'set g rowheight ',": <.4 %~ 400 - 1
 )
 
-mswd_startnew=: mswd_update@mswd_fmttable@new2048
+startnew=: update@fmt_table@new2048
 
-mswd_update=: 3 : 0
+update=: 3 : 0
   Grid=: y       NB. update global Grid
   'isend msg'=. eval Grid
   mswd_resize''
@@ -100,18 +100,13 @@ mswd_resize=: 3 : 0
   wd 'set g minwh ',": isisz
 )
 
-move=: conjunction define
-  Points=: v Grid
-  mswd_update newnum^:(Grid -.@-: ]) u Grid
-)
-
-mswd_left_button=: verb def 'mergeleft move scoreleft'
-mswd_right_button=: verb def 'mergeright move scoreright'
-mswd_up_button=: verb def 'mergeup move scoreup'
-mswd_down_button=: verb def 'mergedown move scoredown'
+mswd_left_button=: 3 :'mergerow toLeft move (scorerow toLeft)'
+mswd_right_button=: 3 :'mergerow toRight move (scorerow toRight)'
+mswd_up_button=: 3 :'mergerow toUp move (scorerow toUp)'
+mswd_down_button=: 3 :'mergerow toDown move (scorerow toDown)'
 
 mswd_new_button=: 3 :0
-  mswd_startnew ''
+  startnew ''
 )
 
 mswd_about_button=: 3 : 0

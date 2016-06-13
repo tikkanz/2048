@@ -15,25 +15,25 @@ coinsert 'g2048'
 
 create=: verb define
   echo Instructions
-  g2048_startnew y
+  startnew y
 )
 
 destroy=: codestroy
 quit=: destroy
 
-g2048_startnew=: g2048con_update@new2048
+startnew=: update@new2048
 
 move=: conjunction define
-  Points=: v Grid
-  g2048con_update newnum^:(Grid -.@-: ]) u Grid
+  Points=: +/@, v Grid
+  update newnum^:(Grid -.@-: ]) u Grid
 )
 
-left=: verb def 'mergeleft move scoreleft'
-right=: verb def 'mergeright move scoreright'
-up=: verb def 'mergeup move scoreup'
-down=: verb def 'mergedown move scoredown'
+left=: 3 :'mergerow toLeft move (scorerow toLeft)'
+right=: 3 :'mergerow toRight move (scorerow toRight)'
+up=: 3 :'mergerow toUp move (scorerow toUp)'
+down=: 3 :'mergerow toDown move (scorerow toDown)'
 
-g2048con_update=: verb define
+update=: verb define
   Grid=: y       NB. update global Grid
   'isend msg'=. eval Grid
   echo msg
