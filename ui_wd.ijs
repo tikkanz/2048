@@ -30,14 +30,14 @@ menu about "&About";
 menupopz;
 
 cc g table;
-bin v;
+bin vhs;
 cc up button;cn Up;
-bin h;
+bin szhs;
 cc left button; cn Left;
 cc right button; cn Right;
-bin z;
+bin szhs;
 cc down button;cn Down;
-bin z;
+bin szz;
 cc sbar statusbar;
 )
 
@@ -60,12 +60,13 @@ mswd_exit_button=: destroy
 mswd_close=: destroy
 mswd_cancel=: destroy
 
-mswd_fmttable=: 3 :0
+mswd_g_fmttable=: 3 :0
   wd 'set g shape ',": Gridsz
   wd 'set g type ',":, 0 $~ Gridsz
   wd 'set g align ', ": 1 $~ {: Gridsz
   wd 'set g font Consolas 20'
   wd 'set g protect ',":, 1 $~ Gridsz
+  wd 'set g nofocus'
   showGrid''
   Grid
 )
