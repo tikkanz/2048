@@ -53,6 +53,8 @@ bin szhs;
 cc down button;cn Down;
 bin szz;
 cc sbar statusbar;
+set sbar addlabelp score;
+set sbar stylesheet *QWidget {font: 14pt "monospaced";};
 )
 
 NB. Methods
@@ -76,11 +78,11 @@ mswd_cancel=: destroy
 
 fmt_table=: 3 :0
   wd 'set g shape ',": Gridsz
-  wd 'set g type ',":, 0 $~ Gridsz
-  wd 'set g align ', ": 1 $~ {: Gridsz
-  wd 'set g font SansSerif 20 bold'
-  wd 'set g protect ',":, 1 $~ Gridsz
+  wd 'set g align ',": 1 $~ {: Gridsz
+  wd 'set g type ',": ,0 $~ Gridsz
+  wd 'set g protect ',": ,1 $~ Gridsz
   wd 'set g nofocus'
+  wd 'set g font SansSerif 20 bold'
   showGrid''
   Grid
 )
@@ -90,7 +92,7 @@ showGrid=: 3 :0
   tbl=. (Grid=0)} (8!:0 Grid) ,: <'""'
   wd 'set g data *', ' ' joinstring ,tbl
   bkgrd=. BColors {~ (* __&~:)@(%&^. 2:) ,Grid
-  wd 'set g color ', ' ' joinstring , bkgrd ,. FColor
+  wd 'set g color ', ' ' joinstring ,bkgrd ,. FColor
   cellsz=. Gridsz <.@%~ Tblsz-1
   wd 'set g rowheight ',": {.cellsz
   wd 'set g colwidth ',": {:cellsz
@@ -106,7 +108,7 @@ update=: 3 : 0
   if. isend do.
     wdinfo msg
   else.
-    wd 'set sbar show "',msg,'"'
+    wd 'set sbar setlabel score "',msg,'"'
     empty''
   end.
 )

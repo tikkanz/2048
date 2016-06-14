@@ -55,7 +55,7 @@ eval=: verb define
   msg=. isend # 'You lost!!';'You Won!!'
   if. -. isend=. +./ isend do.
     Points=: 0
-    msg=. 'Score is ',(": Score)
+    msg=. 'Score: ',(": Score)
   end.
   isend;msg
 )
