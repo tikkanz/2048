@@ -43,7 +43,7 @@ menu help "&Instructions";
 menu about "&About";
 menupopz;
 
-cc g table;
+cc g table flush;
 bin vhs;
 cc up button;cn Up;
 bin szhs;
@@ -91,8 +91,9 @@ showGrid=: 3 :0
   wd 'set g data *', ' ' joinstring ,tbl
   bkgrd=. BColors {~ (* __&~:)@(%&^. 2:) ,Grid
   wd 'set g color ', ' ' joinstring , bkgrd ,. FColor
-  wd 'set g colwidth ',": <.4 %~ Tblsz - 1
-  wd 'set g rowheight ',": <.4 %~ Tblsz - 1
+  cellsz=. Gridsz <.@%~ Tblsz-1
+  wd 'set g rowheight ',": {.cellsz
+  wd 'set g colwidth ',": {:cellsz
 )
 
 startnew=: update@fmt_table@new2048
