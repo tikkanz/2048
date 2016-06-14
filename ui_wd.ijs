@@ -24,6 +24,12 @@ menu new "&New Game";
 menusep;
 menu exit "&Quit";
 menupopz;
+menupop "&Direction";
+menu leftm "Left" "Ctrl+a";
+menu rightm "Right" "Ctrl+d";
+menu upm "Up" "Ctrl+w";
+menu downm "Down" "Ctrl+s";
+menupopz;
 menupop "&Help";
 menu help "&Instructions";
 menu about "&About";
@@ -105,6 +111,11 @@ mswd_right_button=: 3 :'mergerow toRight move (scorerow toRight)'
 mswd_up_button=: 3 :'mergerow toUp move (scorerow toUp)'
 mswd_down_button=: 3 :'mergerow toDown move (scorerow toDown)'
 
+mswd_leftm_button=: mswd_left_button
+mswd_rightm_button=: mswd_right_button
+mswd_upm_button=: mswd_up_button
+mswd_downm_button=: mswd_down_button
+
 mswd_new_button=: startnew
 mswd_about_button=: sminfo bind ('About 2048';About)
 mswd_help_button=: sminfo bind ('Minesweeper Instructions';Instructions)
@@ -118,9 +129,11 @@ Object:
    Create the number 2048 by merging numbers.
 
 How to play:
-  When 2 numbers the same touch they merge.
-  Continue merginng until you create the number
+  When 2 numbers the same touch, they merge.
+  Continue merging until you create the number
   2048, or you cannot move any more.
+  Move numbers in a direction using the buttons,
+  or the commands on the Direction menu.
 )
 
 About=: noun define
