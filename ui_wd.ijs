@@ -15,6 +15,14 @@ require AddonPath,'engine.ijs'
 coclass 'g2048wd'
 coinsert 'g2048'
 
+BColors=: <;.1 , ];._2 noun define
+#cdc1b4#ffe4c3#fff4d3#ffdac3
+#e7b08e#e7bf8e#ffc4c3#e7948e
+#be7e56#be5e56#9c3931#701710
+)
+FColor=: <'#333333'
+Tblsz=: 400
+
 NB. Form definitions
 NB. =========================================================
 MSWD=: 0 : 0
@@ -70,7 +78,7 @@ fmt_table=: 3 :0
   wd 'set g shape ',": Gridsz
   wd 'set g type ',":, 0 $~ Gridsz
   wd 'set g align ', ": 1 $~ {: Gridsz
-  wd 'set g font Consolas 20'
+  wd 'set g font SansSerif 20 bold'
   wd 'set g protect ',":, 1 $~ Gridsz
   wd 'set g nofocus'
   showGrid''
@@ -81,8 +89,10 @@ showGrid=: 3 :0
   wd 'psel ', MSWD_hwnd
   tbl=. (Grid=0)} (8!:0 Grid) ,: <'""'
   wd 'set g data *', ' ' joinstring ,tbl
-  wd 'set g colwidth ',": <.4 %~ 400 - 1
-  wd 'set g rowheight ',": <.4 %~ 400 - 1
+  bkgrd=. BColors {~ (* __&~:)@(%&^. 2:) ,Grid
+  wd 'set g color ', ' ' joinstring , bkgrd ,. FColor
+  wd 'set g colwidth ',": <.4 %~ Tblsz - 1
+  wd 'set g rowheight ',": <.4 %~ Tblsz - 1
 )
 
 startnew=: update@fmt_table@new2048
@@ -101,9 +111,8 @@ update=: 3 : 0
 )
 
 mswd_resize=: 3 : 0
-  tblsz=. 400 400
   wd 'psel ', MSWD_hwnd
-  wd 'set g minwh ',": tblsz
+  wd 'set g minwh ',": 2#Tblsz
 )
 
 mswd_left_button=: 3 :'mergerow toLeft move (scorerow toLeft)'
