@@ -64,6 +64,7 @@ create=: 3 : 0
   NB. need unique handle for mswd window to handle multiple instances of class
   MSWD_hwnd=: wd 'qhwndp'  NB. assign hwnd this for mswd in instance locale
   startnew y
+  wd 'set g minwh ',": 2#Tblsz
   wd 'pshow'
 )
 
@@ -83,15 +84,15 @@ fmt_table=: 3 :0
   wd 'set g protect ',": ,1 $~ Gridsz
   wd 'set g nofocus'
   wd 'set g font SansSerif 20 bold'
-  showGrid''
-  Grid
+  showGrid y
+  y
 )
 
 showGrid=: 3 :0
   wd 'psel ', MSWD_hwnd
-  tbl=. (Grid=0)} (8!:0 Grid) ,: <'""'
+  tbl=. (y=0)} (8!:0 y) ,: <'""'
   wd 'set g data *', ' ' joinstring ,tbl
-  bkgrd=. BColors {~ (* __&~:)@(%&^. 2:) ,Grid
+  bkgrd=. BColors {~ (* __&~:)@(%&^. 2:) ,y
   wd 'set g color ', ' ' joinstring ,bkgrd ,. FColor
   cellsz=. Gridsz <.@%~ Tblsz-1
   wd 'set g rowheight ',": {.cellsz
@@ -102,20 +103,14 @@ startnew=: update@fmt_table@new2048
 
 update=: 3 : 0
   Grid=: y       NB. update global Grid
-  'isend msg'=. eval Grid
-  mswd_resize''
-  showGrid Grid
+  'isend msg'=. eval y
+  showGrid y
   if. isend do.
     wdinfo msg
   else.
     wd 'set sbar setlabel score "',msg,'"'
     empty''
   end.
-)
-
-mswd_resize=: 3 : 0
-  wd 'psel ', MSWD_hwnd
-  wd 'set g minwh ',": 2#Tblsz
 )
 
 mswd_left_button=: 3 :'mergerow toLeft move (scorerow toLeft)'
