@@ -14,6 +14,7 @@ NB. the same sequence of new numbers will result in each fresh J session.
 )
 
 coclass 'g2048'
+Target=: 2048
 
 new2048=: verb define
   Gridsz=: 4 4
@@ -47,7 +48,7 @@ move=: conjunction define
 )
 
 noMoves=: (0 -.@e. ,)@(mergerow toRight , mergerow toLeft , mergerow toUp ,: mergerow toDown)
-hasWon=: 2048 e. ,
+hasWon=: Target e. ,
 
 eval=: verb define
   Score=: Score + Points
@@ -60,6 +61,4 @@ eval=: verb define
   isend;msg
 )
 
-showGrid=: verb define
-  echo y
-)
+showGrid=: echo
