@@ -15,13 +15,13 @@ coinsert 'g2048'
 
 create=: verb define
   echo Instructions
-  startnew y
+  startNew y
 )
 
 destroy=: codestroy
 quit=: destroy
 
-startnew=: update@new2048
+startNew=: update@new2048
 
 left=: 3 :'mergerow toLeft move (scorerow toLeft)'
 right=: 3 :'mergerow toRight move (scorerow toRight)'

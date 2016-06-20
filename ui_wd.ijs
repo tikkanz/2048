@@ -86,7 +86,7 @@ create=: verb define
   wd MSWD
   NB. need unique handle for mswd window to handle multiple instances of class
   MSWD_hwnd=: wd 'qhwndp'  NB. assign hwnd this for mswd in instance locale
-  startnew y
+  startNew y
   wd 'set g minwh ',": 2#Tblsz
   wd 'pshow'
 )
@@ -100,7 +100,7 @@ mswd_exit_button=: destroy
 mswd_close=: destroy
 mswd_cancel=: destroy
 
-fmt_table=: verb define
+fmtTable=: verb define
   wd 'set g shape ',": Gridsz
   wd 'set g align ',": 1 $~ {: Gridsz
   wd 'set g type ',": ,0 $~ Gridsz
@@ -122,7 +122,7 @@ showGrid=: verb define
   wd 'set g colwidth ',": {:cellsz
 )
 
-startnew=: update@fmt_table@new2048
+startNew=: update@fmtTable@new2048
 
 update=: verb define
   Grid=: y       NB. update global Grid
@@ -146,7 +146,7 @@ mswd_rightm_button=: mswd_right_button
 mswd_upm_button=: mswd_up_button
 mswd_downm_button=: mswd_down_button
 
-mswd_new_button=: startnew
+mswd_new_button=: startNew
 
 mswd_help_button=: sminfo bind ('Minesweeper Instructions';Instructions)
 mswd_about_button=: sminfo bind ('About 2048';About)
