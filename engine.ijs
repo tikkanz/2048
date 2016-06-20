@@ -3,7 +3,7 @@ NB. Used by the various User Interfaces (ui*.ijs) scripts
 
 NB. When loaded the script should randomly set the random seed otherwise
 NB. the same sequence of new numbers will result in each fresh J session.
-3 : 0 ''
+verb define ''
  try.
    require 'guid'
    tmp=. _2 (3!:4) , guids 1

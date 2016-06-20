@@ -4,7 +4,7 @@ Note 'Example commands to run'
   g2048Wd ''
 )
 
-g2048Wd_z_=: 3 : 0
+g2048Wd_z_=: verb define
   a=. conew 'g2048wd'
   create__a y
 )
@@ -15,7 +15,7 @@ require AddonPath,'engine.ijs'
 coclass 'g2048wd'
 coinsert 'g2048'
 
-BColors=: <;.1 , ];._2 noun define
+BColors=: <;.1 , ];._2 (0 :0)
 #cdc1b4#ffe4c3#fff4d3#ffdac3
 #e7b08e#e7bf8e#ffc4c3#e7948e
 #be7e56#be5e56#9c3931#701710
@@ -25,7 +25,7 @@ Tblsz=: 400
 
 NB. Form definitions
 NB. =========================================================
-MSWD=: 0 : 0
+MSWD=: noun define
 pc mswd nosize escclose closeok;pn "2048";
 menupop "&Game";
 menu new "&New Game";
@@ -82,7 +82,7 @@ Uses Qt Window Driver for GUI
 
 NB. Methods
 NB. =========================================================
-create=: 3 : 0
+create=: verb define
   wd MSWD
   NB. need unique handle for mswd window to handle multiple instances of class
   MSWD_hwnd=: wd 'qhwndp'  NB. assign hwnd this for mswd in instance locale
@@ -91,7 +91,7 @@ create=: 3 : 0
   wd 'pshow'
 )
 
-destroy=: 3 : 0
+destroy=: verb define
   wd 'pclose'
   codestroy ''
 )
@@ -100,7 +100,7 @@ mswd_exit_button=: destroy
 mswd_close=: destroy
 mswd_cancel=: destroy
 
-fmt_table=: 3 :0
+fmt_table=: verb define
   wd 'set g shape ',": Gridsz
   wd 'set g align ',": 1 $~ {: Gridsz
   wd 'set g type ',": ,0 $~ Gridsz
@@ -111,7 +111,7 @@ fmt_table=: 3 :0
   y
 )
 
-showGrid=: 3 :0
+showGrid=: verb define
   wd 'psel ', MSWD_hwnd
   tbl=. (y=0)} (8!:0 y) ,: <'""'
   wd 'set g data *', ' ' joinstring ,tbl
@@ -124,7 +124,7 @@ showGrid=: 3 :0
 
 startnew=: update@fmt_table@new2048
 
-update=: 3 : 0
+update=: verb define
   Grid=: y       NB. update global Grid
   'isend msg'=. eval y
   showGrid y
