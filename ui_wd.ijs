@@ -9,7 +9,7 @@ g2048Wd_z_=: 3 : 0
   create__a y
 )
 
-AddonPath=: jpath '~ProjectsGit/g2048/'
+AddonPath=: jpath '~Proj/g2048/'
 
 require AddonPath,'engine.ijs'
 coclass 'g2048wd'
@@ -55,6 +55,29 @@ bin szz;
 cc sbar statusbar;
 set sbar addlabelp score;
 set sbar stylesheet *QWidget {font: 14pt "monospaced";};
+)
+
+NB. Text Nouns
+NB. =========================================================
+
+Instructions=: noun define
+=== 2048 ===
+Object:
+   Create the number 2048 by merging numbers.
+
+How to play:
+  When 2 numbers the same touch, they merge.
+  Continue merging until you create the number
+  2048, or you cannot move any more.
+  Move numbers in a direction using the buttons,
+  or the commands on the Direction menu.
+)
+
+About=: noun define
+2048 Game
+Author: Ric Sherlock
+
+Uses Qt Window Driver for GUI
 )
 
 NB. Methods
@@ -124,31 +147,10 @@ mswd_upm_button=: mswd_up_button
 mswd_downm_button=: mswd_down_button
 
 mswd_new_button=: startnew
-mswd_about_button=: sminfo bind ('About 2048';About)
+
 mswd_help_button=: sminfo bind ('Minesweeper Instructions';Instructions)
+mswd_about_button=: sminfo bind ('About 2048';About)
 
-NB. Text Nouns
-NB. =========================================================
-
-Instructions=: noun define
-=== 2048 ===
-Object:
-   Create the number 2048 by merging numbers.
-
-How to play:
-  When 2 numbers the same touch, they merge.
-  Continue merging until you create the number
-  2048, or you cannot move any more.
-  Move numbers in a direction using the buttons,
-  or the commands on the Direction menu.
-)
-
-About=: noun define
-2048 Game
-Author: Ric Sherlock
-
-Uses Qt Window Driver for GUI
-)
 
 NB. Auto-run UI
 NB. =========================================================
