@@ -23,7 +23,7 @@ new2048=: verb define
 )
 
 newnum=: verb define
-  num=. ,/ 2 4 {~ 0.1 > ?0   NB. 10% chance of 4
+  num=. 2 4 {~ 0.1 > ?0      NB. 10% chance of 4
   idx=. 4 $. $. 0 = y        NB. indicies of 0s
   if. #idx do.               NB. handle full grid
     idx=. ,/ ({~ 1 ? #) idx  NB. choose an index
@@ -37,10 +37,10 @@ mergerow=: ((* >:) #~ _1 |. -.@]) mskmerge
 scorerow=: +/@(+: #~ mskmerge)
 
 compress=: -.&0
-toLeft=: 1 :'4&{.@(u@compress&.|.)"1'
-toRight=: 1 : '_4&{.@(u@compress)"1'
-toUp=: 1 : '(4&{.@(u@compress&.|.)"1)&.|:'
-toDown=: 1 : '(_4&{.@(u@compress)"1)&.|:'
+toLeft=: 1 :'4&{.@(u@compress)"1'
+toRight=: 1 : '_4&{.@(u@compress&.|.)"1'
+toUp=: 1 : '(4&{.@(u@compress)"1)&.|:'
+toDown=: 1 : '(_4&{.@(u@compress&.|.)"1)&.|:'
 
 move=: conjunction define
   Points=: +/@, v Grid
