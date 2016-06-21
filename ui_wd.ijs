@@ -9,9 +9,10 @@ g2048Wd_z_=: verb define
   create__a y
 )
 
-AddonPath=: jpath '~Proj/g2048/'
+loc_z_=: 3 : '> (4!:4 <''y'') { 4!:3 $0'  NB. pathname of script calling it
+AddonPath=: fpath_j_ loc ''
 
-require AddonPath,'engine.ijs'
+require AddonPath,'/engine.ijs'
 coclass 'g2048wd'
 coinsert 'g2048'
 

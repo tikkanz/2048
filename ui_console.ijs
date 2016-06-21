@@ -7,9 +7,10 @@ Note 'Example command to run'
 )
 g2048Con_z_=: conew&'g2048con'
 
-AddonPath=: jpath '~ProjectsGit/g2048/'
+loc_z_=: 3 : '> (4!:4 <''y'') { 4!:3 $0'  NB. pathname of script calling it
+AddonPath=: fpath_j_ loc ''
 
-require AddonPath,'engine.ijs'
+require AddonPath,'/engine.ijs'
 coclass 'g2048con'
 coinsert 'g2048'
 
