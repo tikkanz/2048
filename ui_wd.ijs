@@ -45,19 +45,18 @@ menu about "&About";
 menupopz;
 
 cc g table flush;
-bin vhs;
+bin hvhs;
 cc up button;cn Up;
 bin szhs;
 cc left button; cn Left;
 cc right button; cn Right;
 bin szhs;
 cc down button;cn Down;
-bin szz;
-cc sbar statusbar;
-set sbar addlabelp score;
-set sbar stylesheet *QWidget {font: 14pt "monospaced";};
+bin szzv;
+cc sval static right sunken;set sval wh 85 60;
+bin m10zz;
+set sval stylesheet *QLabel {font: 14pt "monospaced";};
 )
-
 NB. Text Nouns
 NB. =========================================================
 
@@ -132,7 +131,7 @@ update=: verb define
   if. isend do.
     wdinfo msg
   else.
-    wd 'set sbar setlabel score "',msg,'"'
+    wd 'set sval text "',msg,'"'
     empty''
   end.
 )
