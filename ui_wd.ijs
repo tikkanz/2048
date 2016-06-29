@@ -109,12 +109,19 @@ mswd_new_button=: startNew
 mswd_help_button=: sminfo bind ('Minesweeper Instructions';Instructions)
 mswd_about_button=: sminfo bind ('About 2048';About)
 
+NB. mswd_default =: 3 : 'smoutput wdq'
+NB. mswd_g_mark=: verb define
+NB.   wd 
+NB.  Posns=. _3 ]\ '1 01 20 12 1'
+NB.  left`right`up`down@.Posns&i.~ g
+NB. select position 1 1
+NB. )
+
 fmtTable=: verb define
   wd 'set g shape ',": Gridsz
   wd 'set g align ',": 1 $~ {: Gridsz
   wd 'set g type ',": ,0 $~ Gridsz
-  wd 'set g protect ',": ,1 $~ Gridsz
-  wd 'set g nofocus'
+  wd 'set g enable 0'
   wd 'set g font SansSerif 20 bold'
   showGrid y
   y
