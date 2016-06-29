@@ -106,7 +106,7 @@ mswd_upm_button=: mswd_up_button=: up
 mswd_downm_button=: mswd_down_button=: down
 
 mswd_new_button=: startNew
-mswd_help_button=: sminfo bind ('Minesweeper Instructions';Instructions)
+mswd_help_button=: sminfo bind ('2048 Instructions';Instructions)
 mswd_about_button=: sminfo bind ('About 2048';About)
 
 NB. mswd_default =: 3 : 'smoutput wdq'
