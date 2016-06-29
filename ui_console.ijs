@@ -24,11 +24,6 @@ quit=: destroy
 
 startNew=: update@new2048
 
-left=: 3 :'mergerow toLeft move (scorerow toLeft)'
-right=: 3 :'mergerow toRight move (scorerow toRight)'
-up=: 3 :'mergerow toUp move (scorerow toUp)'
-down=: 3 :'mergerow toDown move (scorerow toDown)'
-
 update=: verb define
   Grid=: y       NB. update global Grid
   'isend msg'=. eval Grid

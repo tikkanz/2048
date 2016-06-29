@@ -136,21 +136,15 @@ update=: verb define
   end.
 )
 
-mswd_left_button=: 3 :'mergerow toLeft move (scorerow toLeft)'
-mswd_right_button=: 3 :'mergerow toRight move (scorerow toRight)'
-mswd_up_button=: 3 :'mergerow toUp move (scorerow toUp)'
-mswd_down_button=: 3 :'mergerow toDown move (scorerow toDown)'
-
-mswd_leftm_button=: mswd_left_button
-mswd_rightm_button=: mswd_right_button
-mswd_upm_button=: mswd_up_button
-mswd_downm_button=: mswd_down_button
+mswd_leftm_button=: mswd_left_button=: left
+mswd_rightm_button=: mswd_right_button=: right
+mswd_upm_button=: mswd_up_button=: up
+mswd_downm_button=: mswd_down_button=: down
 
 mswd_new_button=: startNew
 
 mswd_help_button=: sminfo bind ('Minesweeper Instructions';Instructions)
 mswd_about_button=: sminfo bind ('About 2048';About)
-
 
 NB. Auto-run UI
 NB. =========================================================

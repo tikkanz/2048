@@ -47,6 +47,11 @@ move=: conjunction define
   update newnum^:(Grid -.@-: ]) u Grid
 )
 
+left=: 3 :'mergerow toLeft move (scorerow toLeft)'
+right=: 3 :'mergerow toRight move (scorerow toRight)'
+up=: 3 :'mergerow toUp move (scorerow toUp)'
+down=: 3 :'mergerow toDown move (scorerow toDown)'
+
 noMoves=: (0 -.@e. ,)@(mergerow toRight , mergerow toLeft , mergerow toUp ,: mergerow toDown)
 hasWon=: Target e. ,
 
