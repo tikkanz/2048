@@ -100,6 +100,15 @@ mswd_exit_button=: destroy
 mswd_close=: destroy
 mswd_cancel=: destroy
 
+mswd_leftm_button=: mswd_left_button=: left
+mswd_rightm_button=: mswd_right_button=: right
+mswd_upm_button=: mswd_up_button=: up
+mswd_downm_button=: mswd_down_button=: down
+
+mswd_new_button=: startNew
+mswd_help_button=: sminfo bind ('Minesweeper Instructions';Instructions)
+mswd_about_button=: sminfo bind ('About 2048';About)
+
 fmtTable=: verb define
   wd 'set g shape ',": Gridsz
   wd 'set g align ',": 1 $~ {: Gridsz
@@ -135,16 +144,6 @@ update=: verb define
     empty''
   end.
 )
-
-mswd_leftm_button=: mswd_left_button=: left
-mswd_rightm_button=: mswd_right_button=: right
-mswd_upm_button=: mswd_up_button=: up
-mswd_downm_button=: mswd_down_button=: down
-
-mswd_new_button=: startNew
-
-mswd_help_button=: sminfo bind ('Minesweeper Instructions';Instructions)
-mswd_about_button=: sminfo bind ('About 2048';About)
 
 NB. Auto-run UI
 NB. =========================================================
