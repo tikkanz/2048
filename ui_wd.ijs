@@ -84,8 +84,6 @@ NB. Methods
 NB. =========================================================
 create=: verb define
   wd MSWD
-  NB. need unique handle for mswd window to handle multiple instances of class
-  MSWD_hwnd=: wd 'qhwndp'  NB. assign hwnd this for mswd in instance locale
   startNew y
   wd 'set g minwh ',": 2#Tblsz
   wd 'pshow'
@@ -129,7 +127,6 @@ fmtTable=: verb define
 )
 
 showGrid=: verb define
-  wd 'psel ', MSWD_hwnd
   tbl=. (y=0)} (8!:0 y) ,: <'""'
   wd 'set g data *', ' ' joinstring ,tbl
   bkgrd=. BColors {~ (* __&~:)@(%&^. 2:) ,y
