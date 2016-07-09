@@ -22,12 +22,12 @@ BColors=: <;.1 , ];._2 (0 :0)
 #be7e56#be5e56#9c3931#701710
 )
 FColor=: <'#333333'
-Tblsz=: 400
+Tblsz=: 400 400
 
 NB. Form definitions
 NB. =========================================================
 MSWD=: noun define
-pc mswd nosize escclose;pn "2048";
+pc mswd escclose;pn "2048";
 menupop "&Game";
 menu new "&New Game";
 menusep;
@@ -84,8 +84,8 @@ NB. Methods
 NB. =========================================================
 create=: verb define
   wd MSWD
+  wd 'set g minwh ',": Tblsz
   startNew y
-  wd 'set g minwh ',": 2#Tblsz
   wd 'pshow'
 )
 
@@ -122,7 +122,6 @@ fmtTable=: verb define
   wd 'set g type ',": ,0 $~ Gridsz
   wd 'set g enable 0'
   wd 'set g font SansSerif 20 bold'
-  showGrid y
   y
 )
 
@@ -131,9 +130,10 @@ showGrid=: verb define
   wd 'set g data *', ' ' joinstring ,tbl
   bkgrd=. BColors {~ (* __&~:)@(%&^. 2:) ,y
   wd 'set g color ', ' ' joinstring ,bkgrd ,. FColor
-  cellsz=. Gridsz <.@%~ Tblsz-1
-  wd 'set g rowheight ',": {.cellsz
-  wd 'set g colwidth ',": {:cellsz
+  Tblsz=: _99 ". wd 'get g wh'
+  cellsz=. Gridsz <.@%~ Tblsz-2
+  wd 'set g colwidth ',": {.cellsz
+  wd 'set g rowheight ',": {:cellsz
 )
 
 startNew=: update@fmtTable@new2048
