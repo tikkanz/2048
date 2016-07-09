@@ -43,7 +43,7 @@ menu help "&Instructions";
 menu about "&About";
 menupopz;
 
-cc g table flush;set g minwh 310 310;
+cc g table flush;set g minwh 335 335;
 bin hvhs;
 cc up button;cn Up;
 bin szhs;
