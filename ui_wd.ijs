@@ -27,7 +27,7 @@ Tblsz=: 400
 NB. Form definitions
 NB. =========================================================
 MSWD=: noun define
-pc mswd nosize escclose closeok;pn "2048";
+pc mswd nosize escclose;pn "2048";
 menupop "&Game";
 menu new "&New Game";
 menusep;
@@ -111,10 +111,11 @@ mswd_about_button=: sminfo bind ('About 2048';About)
 
 NB. mswd_default =: 3 : 'smoutput wdq'
 NB. mswd_g_mark=: verb define
-NB.   wd 
-NB.  Posns=. _3 ]\ '1 01 20 12 1'
-NB.  left`right`up`down@.Posns&i.~ g
-NB. select position 1 1
+NB. Posns=. _3 ]\ '1 01 20 12 1'
+NB.  echo g
+NB.  echo Posns i. g
+NB.  left`right`up`down`]@.(Posns i. ]) g
+NB.  wd 'set g select 1 1' NB. select position 1 1
 NB. )
 
 fmtTable=: verb define
