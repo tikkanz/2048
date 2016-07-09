@@ -22,7 +22,6 @@ BColors=: <;.1 , ];._2 (0 :0)
 #be7e56#be5e56#9c3931#701710
 )
 FColor=: <'#333333'
-Tblsz=: 400 400
 
 NB. Form definitions
 NB. =========================================================
@@ -44,7 +43,7 @@ menu help "&Instructions";
 menu about "&About";
 menupopz;
 
-cc g table flush;
+cc g table flush;set g minwh 310 310;
 bin hvhs;
 cc up button;cn Up;
 bin szhs;
@@ -84,7 +83,6 @@ NB. Methods
 NB. =========================================================
 create=: verb define
   wd MSWD
-  wd 'set g minwh ',": Tblsz
   startNew y
   wd 'pshow'
 )
@@ -130,8 +128,8 @@ showGrid=: verb define
   wd 'set g data *', ' ' joinstring ,tbl
   bkgrd=. BColors {~ (* __&~:)@(%&^. 2:) ,y
   wd 'set g color ', ' ' joinstring ,bkgrd ,. FColor
-  Tblsz=: _99 ". wd 'get g wh'
-  cellsz=. Gridsz <.@%~ Tblsz-2
+  tblsz=. _99 ". wd 'get g wh'
+  cellsz=. Gridsz <.@%~ tblsz-2
   wd 'set g colwidth ',": {.cellsz
   wd 'set g rowheight ',": {:cellsz
 )
