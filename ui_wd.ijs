@@ -135,18 +135,8 @@ showGrid=: verb define
 )
 
 startNew=: update@fmtTable@new2048
-
-update=: verb define
-  Grid=: y       NB. update global Grid
-  'isend msg'=. eval y
-  showGrid y
-  if. isend do.
-    wdinfo msg
-  else.
-    wd 'set sval text "',msg,'"'
-    empty''
-  end.
-)
+showScore=: wd@('set sval text "' , ,&'"')
+endGame=: wdinfo
 
 NB. Auto-run UI
 NB. =========================================================

@@ -57,13 +57,22 @@ hasWon=: Target e. ,
 
 eval=: verb define
   Score=: Score + Points
+  Points=: 0
   isend=. (noMoves , hasWon) y
   msg=. isend # 'You lost!!';'You Won!!'
-  if. -. isend=. +./ isend do.
-    Points=: 0
-    msg=. 'Score: ',(": Score)
-  end.
+  isend=. +./ isend
   isend;msg
 )
 
-showGrid=: echo
+update=: verb define
+  Grid=: y       NB. update global Grid
+  'isend msg'=. eval y
+  showGrid y
+  showScore 'Score: ',(": Score)
+  if. isend do.
+    endGame msg
+  end.
+  empty''
+)
+
+endGame=: showScore=: showGrid=: echo

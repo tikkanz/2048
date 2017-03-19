@@ -23,15 +23,7 @@ destroy=: codestroy
 quit=: destroy
 
 startNew=: update@new2048
-
-update=: verb define
-  Grid=: y       NB. update global Grid
-  'isend msg'=. eval Grid
-  echo msg
-  showGrid Grid
-  if. isend do. destroy '' end.
-  empty''
-)
+endGame=: destroy@('' [ echo)
 
 Instructions=: noun define
 === 2048 ===
