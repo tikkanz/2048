@@ -10,7 +10,7 @@ g2048Wd_z_=: verb define
 )
 
 loc_z_=: 3 : 'jpath > (4!:4 <''y'') { 4!:3 $0'  NB. pathname of script calling it
-AddonPath=: fpath_j_ loc ''
+AddonPath=. fpath_j_ loc ''
 
 require AddonPath,'/engine.ijs'
 coclass 'g2048wd'

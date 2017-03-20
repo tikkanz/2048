@@ -8,7 +8,7 @@ Note 'Example command to run'
 g2048Con_z_=: conew&'g2048con'
 
 loc_z_=: 3 : 'jpath > (4!:4 <''y'') { 4!:3 $0'  NB. pathname of script calling it
-AddonPath=: fpath_j_ loc ''
+AddonPath=. fpath_j_ loc ''
 
 require AddonPath,'/engine.ijs'
 coclass 'g2048con'
