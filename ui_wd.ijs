@@ -61,22 +61,21 @@ NB. =========================================================
 
 Instructions=: noun define
 <h3>2048</h3>
-Object:
-   Create the number 2048 by merging numbers.
-<p>
-How to play:
+<p><i>Object:</i><br />
+  Create the number 2048 by merging numbers.
+</p>
+<p><i>How to play:</i><br />
   When 2 numbers the same touch, they merge.
   Continue merging until you create the number
   2048, or you cannot move any more.
-<p>
-  Move numbers using the buttons or arrow keys.
+</p>
+ <p> Move numbers using the buttons or arrow keys.</p>
 )
 
 About=: noun define
-2048 Game
-Author: Ric Sherlock
-
-Uses Qt Window Driver for GUI
+<h3>2048 Game</h3>
+<p><i>Author:</i><br />Ric Sherlock</p>
+<p>Uses Qt Window Driver for GUI</p>
 )
 
 NB. Methods
