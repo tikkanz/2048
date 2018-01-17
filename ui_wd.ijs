@@ -10,7 +10,7 @@ g2048Wd_z_=: verb define
 )
 
 loc_z_=: 3 : 'jpath > (4!:4 <''y'') { 4!:3 $0'  NB. pathname of script calling it
-AddonPath=: fpath_j_ loc ''
+AddonPath=. fpath_j_ loc ''
 
 require AddonPath,'/engine.ijs'
 coclass 'g2048wd'
@@ -33,10 +33,10 @@ menusep;
 menu exit "&Quit";
 menupopz;
 menupop "&Direction";
-menu leftm "Left" "Ctrl+a";
-menu rightm "Right" "Ctrl+d";
-menu upm "Up" "Ctrl+w";
-menu downm "Down" "Ctrl+s";
+menu leftm "Move Left" "Left";
+menu rightm "Move Right" "Right";
+menu upm "Move Up" "Up";
+menu downm "Move Down" "Down";
 menupopz;
 menupop "&Help";
 menu help "&Instructions";
@@ -60,16 +60,16 @@ NB. Text Nouns
 NB. =========================================================
 
 Instructions=: noun define
-=== 2048 ===
+<h3>2048</h3>
 Object:
    Create the number 2048 by merging numbers.
-
+<p>
 How to play:
   When 2 numbers the same touch, they merge.
   Continue merging until you create the number
   2048, or you cannot move any more.
-  Move numbers in a direction using the buttons,
-  or the commands on the Direction menu.
+<p>
+  Move numbers using the buttons or arrow keys.
 )
 
 About=: noun define
@@ -95,6 +95,7 @@ destroy=: verb define
 mswd_exit_button=: destroy
 mswd_close=: destroy
 mswd_cancel=: destroy
+mswd_resize=: 3 : 'showGrid Grid'
 
 mswd_leftm_button=: mswd_left_button=: left
 mswd_rightm_button=: mswd_right_button=: right
