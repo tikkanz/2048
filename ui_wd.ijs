@@ -96,10 +96,10 @@ mswd_close=: destroy
 mswd_cancel=: destroy
 mswd_resize=: 3 : 'showGrid Grid'
 
-mswd_leftm_button=: mswd_left_button=: left
-mswd_rightm_button=: mswd_right_button=: right
-mswd_upm_button=: mswd_up_button=: up
-mswd_downm_button=: mswd_down_button=: down
+mswd_leftm_button=: mswd_left_button=: 3 : 'left Grid'
+mswd_rightm_button=: mswd_right_button=: 3 : 'right Grid'
+mswd_upm_button=: mswd_up_button=: 3 : 'up Grid'
+mswd_downm_button=: mswd_down_button=: 3 : 'down Grid'
 
 mswd_new_button=: startNew
 mswd_help_button=: sminfo bind ('2048 Instructions';Instructions)

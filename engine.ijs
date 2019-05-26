@@ -18,8 +18,9 @@ Target=: 2048
 
 new2048=: verb define
   Gridsz=: 4 4
-  Points=: Score=: 0
+  Score=: 0
   Grid=: newnum^:2 ] Gridsz $ 0
+  Grid;0                     NB. return grid and points
 )
 
 newnum=: verb define
@@ -42,35 +43,24 @@ toRight=: 1 : '_4&{.@(u@compress&.|.)"1'
 toUp=: 1 : '(4&{.@(u@compress)"1)&.|:'
 toDown=: 1 : '(_4&{.@(u@compress&.|.)"1)&.|:'
 
-move=: conjunction define
-  Points=: +/@, v Grid
-  update newnum^:(Grid -.@-: ]) u Grid
-)
+move=: 2 : 'update@( (] newnum@]^:(-.@-:) u) ; [: +/@, v)'
 
-left=: 3 :'(mergerow toLeft) move (scorerow toLeft)'
-right=: 3 :'(mergerow toRight) move (scorerow toRight)'
-up=: 3 :'(mergerow toUp) move (scorerow toUp)'
-down=: 3 :'(mergerow toDown) move (scorerow toDown)'
+left=: (mergerow toLeft) move (scorerow toLeft)
+right=: (mergerow toRight) move (scorerow toRight)
+up=: (mergerow toUp) move (scorerow toUp)
+down=: (mergerow toDown) move (scorerow toDown)
 
 noMoves=: (0 -.@e. ,)@(mergerow toRight , mergerow toLeft , mergerow toUp ,: mergerow toDown)
 hasWon=: Target e. ,
 
-eval=: verb define
-  Score=: Score + Points
-  Points=: 0
-  isend=. (noMoves , hasWon) y
-  msg=. isend # 'You lost!!';'You Won!!'
-  isend=. +./ isend
-  isend;msg
-)
-
 update=: verb define
-  Grid=: y       NB. update global Grid
-  'isend msg'=. eval y
-  showGrid y
+  'grid points'=. y
+  Grid=: grid              NB. update global Grid
+  Score=: Score + points   NB. update global Score
+  showGrid grid
   showScore 'Score: ',(": Score)
-  if. isend do.
-    endGame msg
+  if. +./ isend=. (noMoves , hasWon) grid do.
+    endGame isend # 'You lost!!';'You Won!!'
   end.
   empty''
 )
