@@ -33,17 +33,18 @@ newnum=: verb define
   end.
 )
 
-mskmerge=: [: >/\.&.|. 2 =/\ ,&_1
-mergerow=: ((* >:) #~ _1 |. -.@]) mskmerge
-scorerow=: +/@(+: #~ mskmerge)
-
 compress=: -.&0
-toLeft=: 1 :'4&{.@(u@compress)"1'
-toRight=: 1 : '_4&{.@(u@compress&.|.)"1'
-toUp=: 1 : '(4&{.@(u@compress)"1)&.|:'
-toDown=: 1 : '(_4&{.@(u@compress&.|.)"1)&.|:'
+mskmerge=: [: >/\.&.|. 2 =/\ ,&_1
+mergerow=: 4 {. (((* >:) #~ _1 |. -.@]) mskmerge)@compress
+scorerow=: +/@(+: #~ mskmerge)@compress
 
-move=: 2 : 'update@( (] newnum@]^:(-.@-:) u) ; [: +/@, v)'
+byrow=: "1
+toLeft=:  byrow
+toRight=: byrow&.(|."1)
+toUp=:    byrow&.|:
+toDown=:  byrow&.(|.@|:@|.)
+
+move=: {{ update@( (] newnum@]^:(-.@-:) u) ; [: +/@, v) }}
 
 left=: (mergerow toLeft) move (scorerow toLeft)
 right=: (mergerow toRight) move (scorerow toRight)
