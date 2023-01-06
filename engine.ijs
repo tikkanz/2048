@@ -44,7 +44,15 @@ toRight=: byrow&.(|."1)
 toUp=:    byrow&.|:
 toDown=:  byrow&.(|.@|:@|.)
 
-move=: {{ update@( (] newnum@]^:(-.@-:) u) ; [: +/@, v) }}
+processMove=: {{ ((] spawn@]^:(-.@-:) u) ; [: +/@, v) }}
+move=: update@processMove
+
+NB. move=: {{
+NB.   (grid , score) =. y
+NB.   NewGrid =. (] spawn^:(-.@-:) u ) Grid
+NB.   NewScore =. Score + ([: +.@, v) Grid
+NB.   NewGrid ; NewScore
+NB. }}
 
 left=: (mergerow toLeft) move (scorerow toLeft)
 right=: (mergerow toRight) move (scorerow toRight)
