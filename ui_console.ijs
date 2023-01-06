@@ -14,23 +14,23 @@ require AddonPath,'/engine.ijs'
 coclass 'g2048con'
 coinsert 'g2048'
 
-create=: verb define
+create=: {{
   echo Instructions
   startNew y
-)
+}}
 
 destroy=: codestroy
 quit=: destroy
 
-Left=: 3 : 'left Grid'
-Right=: 3 : 'right Grid'
-Up=: 3 : 'up Grid'
-Down=: 3 : 'down Grid'
+Left=: {{ left Grid }}
+Right=: {{ right Grid }}
+Up=: {{ up Grid }}
+Down=: {{ down Grid }}
 
 startNew=: update@new2048
 endGame=: destroy@('' [ echo)
 
-Instructions=: noun define
+Instructions=: {{)n
 === 2048 ===
 Object:
    Create the number 2048 by merging numbers.
@@ -46,7 +46,7 @@ How to play:
        quit__grd ''
   - start a new game:
        grd=: g2048Con ''
-)
+}}
 
 NB. Auto-run UI
 NB. =========================================================

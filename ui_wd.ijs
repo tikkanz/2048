@@ -4,28 +4,28 @@ Note 'Example commands to run'
   g2048Wd ''
 )
 
-g2048Wd_z_=: verb define
+g2048Wd_z_=: {{
   a=. conew 'g2048wd'
   create__a y
-)
+}}
 
-loc_z_=: 3 : 'jpath > (4!:4 <''y'') { 4!:3 $0'  NB. pathname of script calling it
+loc_z_=: {{ jpath > (4!:4 <'y') { 4!:3 $0 }}  NB. pathname of script calling it
 AddonPath=. fpath_j_ loc ''
 
 require AddonPath,'/engine.ijs'
 coclass 'g2048wd'
 coinsert 'g2048'
 
-BColors=: <;.1 , ];._2 (0 :0)
+BColors=: <;.1 , ];._2 {{)n
 #cdc1b4#ffe4c3#fff4d3#ffdac3
 #e7b08e#e7bf8e#ffc4c3#e7948e
 #be7e56#be5e56#9c3931#701710
-)
+}}
 FColor=: <'#333333'
 
 NB. Form definitions
 NB. =========================================================
-MSWD=: noun define
+MSWD=: {{)n
 pc mswd escclose;pn "2048";
 menupop "&Game";
 menu new "&New Game";
@@ -55,11 +55,11 @@ bin szzv;
 cc sval static right sunken;set sval wh 85 60;
 bin m10zz;
 set sval stylesheet *QLabel {font: 14pt "monospaced";};
-)
+}}
 NB. Text Nouns
 NB. =========================================================
 
-Instructions=: noun define
+Instructions=: {{)n
 <h3>2048</h3>
 <p><i>Object:</i><br />
   Create the number 2048 by merging numbers.
@@ -70,36 +70,36 @@ Instructions=: noun define
   2048, or you cannot move any more.
 </p>
  <p> Move numbers using the buttons or arrow keys.</p>
-)
+}}
 
-About=: noun define
+About=: {{)n
 <h3>2048 Game</h3>
 <p><i>Author:</i><br />Ric Sherlock</p>
 <p>Uses Qt Window Driver for GUI</p>
-)
+}}
 
 NB. Methods
 NB. =========================================================
-create=: verb define
+create=: {{
   wd MSWD
   startNew y
   wd 'pshow'
-)
+}}
 
-destroy=: verb define
+destroy=: {{
   wd 'pclose'
   codestroy ''
-)
+}}
 
 mswd_exit_button=: destroy
 mswd_close=: destroy
 mswd_cancel=: destroy
-mswd_resize=: 3 : 'showGrid Grid'
+mswd_resize=: {{ showGrid Grid }}
 
-mswd_leftm_button=: mswd_left_button=: 3 : 'left Grid'
-mswd_rightm_button=: mswd_right_button=: 3 : 'right Grid'
-mswd_upm_button=: mswd_up_button=: 3 : 'up Grid'
-mswd_downm_button=: mswd_down_button=: 3 : 'down Grid'
+mswd_leftm_button=: mswd_left_button=: {{ left Grid }}
+mswd_rightm_button=: mswd_right_button=: {{ right Grid }}
+mswd_upm_button=: mswd_up_button=: {{ up Grid }}
+mswd_downm_button=: mswd_down_button=: {{ down Grid }}
 
 mswd_new_button=: startNew
 mswd_help_button=: sminfo bind ('2048 Instructions';Instructions)
@@ -114,16 +114,16 @@ NB.  left`right`up`down`]@.(Posns i. ]) g
 NB.  wd 'set g select 1 1' NB. select position 1 1
 NB. )
 
-fmtTable=: verb define
+fmtTable=: {{
   wd 'set g shape ',": Gridsz
   wd 'set g align ',": 1 $~ {: Gridsz
   wd 'set g type ',": ,0 $~ Gridsz
   wd 'set g enable 0'
   wd 'set g font SansSerif 20 bold'
   y
-)
+}}
 
-showGrid=: verb define
+showGrid=: {{
   tbl=. (y=0)} (8!:0 y) ,: <'""'
   wd 'set g data *', ' ' joinstring ,tbl
   bkgrd=. BColors {~ (* __&~:)@(%&^. 2:) ,y
@@ -132,7 +132,7 @@ showGrid=: verb define
   cellsz=. Gridsz <.@%~ tblsz-2
   wd 'set g colwidth ',": {.cellsz
   wd 'set g rowheight ',": {:cellsz
-)
+}}
 
 startNew=: update@fmtTable@new2048
 showScore=: wd@('set sval text "' , ,&'"')

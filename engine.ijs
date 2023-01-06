@@ -3,7 +3,7 @@ NB. Used by the various User Interfaces (ui*.ijs) scripts
 
 NB. When loaded the script should randomly set the random seed otherwise
 NB. the same sequence of new numbers will result in each fresh J session.
-verb define ''
+{{
  try.
    require 'guid'
    tmp=. _2 (3!:4) , guids 1
@@ -11,20 +11,20 @@ verb define ''
    tmp=. >:<.0.8*0 60 60 24 31#.0 0 0 0 _1+|.<.}.6!:0 ''
  end.
  ([ 9!:1) tmp       NB. set random initial random seed
-)
+}} ''
 
 coclass 'g2048'
 Target=: 2048
 
-new2048=: verb define
+new2048=: {{
   Gridsz=: 4 4
   Score=: 0
-  Grid=: newnum^:2 ] Gridsz $ 0
+  Grid=: spawn^:2 ] Gridsz $ 0
   Grid;0                     NB. return grid and points
-)
+}}
 
 NB. spawn v Spawn new 2 or 4 in empty spot
-spawn=: verb define
+spawn=: {{
   num=. 2 4 {~ 0.1 > ?0      NB. 10% chance of 4
   idx=. 4 $. $. 0 = y        NB. indicies of 0s
   if. #idx do.               NB. handle full grid
@@ -32,7 +32,7 @@ spawn=: verb define
     num (<idx)} y
   else. return. y
   end.
-)
+}}
 
 compress=: -.&0
 mskmerge=: [: >/\.&.|. 2 =/\ ,&_1
@@ -56,7 +56,7 @@ down=: (mergerow toDown) move (scorerow toDown)
 noMoves=: (0 -.@e. ,)@(mergerow toRight , mergerow toLeft , mergerow toUp ,: mergerow toDown)
 hasWon=: Target e. ,
 
-update=: verb define
+update=: {{
   'grid points'=. y
   Grid=: grid              NB. update global Grid
   Score=: Score + points   NB. update global Score
@@ -66,6 +66,6 @@ update=: verb define
     endGame isend # 'You lost!!';'You Won!!'
   end.
   empty''
-)
+}}
 
 endGame=: showScore=: showGrid=: echo
