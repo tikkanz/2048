@@ -23,7 +23,8 @@ new2048=: verb define
   Grid;0                     NB. return grid and points
 )
 
-newnum=: verb define
+NB. spawn v Spawn new 2 or 4 in empty spot
+spawn=: verb define
   num=. 2 4 {~ 0.1 > ?0      NB. 10% chance of 4
   idx=. 4 $. $. 0 = y        NB. indicies of 0s
   if. #idx do.               NB. handle full grid
@@ -44,15 +45,8 @@ toRight=: byrow&.(|."1)
 toUp=:    byrow&.|:
 toDown=:  byrow&.(|.@|:@|.)
 
-processMove=: {{ ((] spawn@]^:(-.@-:) u) ; [: +/@, v) }}
+processMove=: {{ (] spawn@]^:(-.@-:) u) ; ([: +/@, v) }}
 move=: update@processMove
-
-NB. move=: {{
-NB.   (grid , score) =. y
-NB.   NewGrid =. (] spawn^:(-.@-:) u ) Grid
-NB.   NewScore =. Score + ([: +.@, v) Grid
-NB.   NewGrid ; NewScore
-NB. }}
 
 left=: (mergerow toLeft) move (scorerow toLeft)
 right=: (mergerow toRight) move (scorerow toRight)
